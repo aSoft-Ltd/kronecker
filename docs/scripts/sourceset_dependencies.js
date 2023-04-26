@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":kronecker-core:dokkaHtmlPartial/commonMain":[],":kronecker-core:dokkaHtmlPartial/jsMain":[":kronecker-core:dokkaHtmlPartial/commonMain"],":kronecker-core:dokkaHtmlPartial/jvmMain":[":kronecker-core:dokkaHtmlPartial/commonMain"]}'
