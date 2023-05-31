@@ -4,6 +4,8 @@ plugins {
     id("tz.co.asoft.library")
 }
 
+description = "A suit of libraries for data pagination and paging at large"
+
 kotlin {
     jvm { library() }
     if (Targeting.JS) js(IR) { library() }
