@@ -12,11 +12,13 @@ import com.vanniktech.maven.publish.SonatypeHost
 
 val v = libs.versions.asoft.get()
 
-group = "tz.co.asoft"
-version = v
-
 repositories {
-    publicRepos()
+	publicRepos()
+}
+
+allprojects {
+    group = "tz.co.asoft"
+    version = v
 }
 
 tasks.dokkaHtmlMultiModule {
@@ -31,7 +33,6 @@ subprojects {
     apply(plugin = "com.vanniktech.maven.publish")
 
     val p = this
-    version = v
 
     configure<MavenPublishBaseExtension> {
         publishToMavenCentral(SonatypeHost.DEFAULT, automaticRelease = true)
