@@ -1,4 +1,4 @@
-pluginManagement {
+ pluginManagement {
     includeBuild("../build-logic")
 }
 
@@ -12,6 +12,8 @@ fun includeSubs(base: String, path: String = base, vararg subs: String) {
         project(":$base-$it").projectDir = File("$path/$it")
     }
 }
+
+includeBuild("../kommander")
 
 rootProject.name = "kronecker"
 
