@@ -7,7 +7,7 @@ import kronecker.SearchOptions
 
 @Serializable
 @PublishedApi
-internal class LoadOptionsImpl(
+internal data class LoadOptionsImpl(
     override val page: Int,
     override val limit: Int,
     override val key: String?

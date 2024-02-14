@@ -1,5 +1,6 @@
 package kronecker
 
+import kronecker.exeptions.MissingParameterException
 import kronecker.internal.LoadOptionsImpl
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
@@ -16,5 +17,31 @@ interface LoadOptions : PageOptions, SearchOptions {
             limit: Int = PageOptions.DEFAULT_LIMIT,
             key: String? = null
         ): LoadOptions = LoadOptionsImpl(page, limit, key)
+
+        fun fromQueryStringOrNull(query: String?): LoadOptions? {
+            if (query == null) return null
+            if (query.isBlank()) return null
+            return try {
+                fromQueryString(query)
+            } catch (_: Throwable) {
+                null
+            }
+        }
+
+        fun fromQueryString(query: String): LoadOptions {
+            val splits = query.split("?")
+            val string = if (splits.size > 1) {
+                splits[1]
+            } else splits[0]
+            val params = string.split("&").associate {
+                val (key, value) = it.split("=")
+                key to value
+            }
+            return LoadOptions(
+                page = params[LoadOptions::page.name]?.toIntOrNull() ?: throw MissingParameterException(query, LoadOptions::page),
+                limit = params[LoadOptions::limit.name]?.toIntOrNull() ?: throw MissingParameterException(query, LoadOptions::limit),
+                key = params[LoadOptions::key.name]
+            )
+        }
     }
 }

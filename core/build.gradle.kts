@@ -17,10 +17,12 @@ kotlin {
     val mingwTargets = if (Targeting.MINGW) mingwTargets() else listOf()
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                api(kotlinx.serialization.core)
-            }
+        commonMain.dependencies {
+            api(kotlinx.serialization.core)
+        }
+
+        commonMain.dependencies {
+            implementation(libs.kommander.core)
         }
     }
 }
