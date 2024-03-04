@@ -6,7 +6,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
-interface LoadOptions : PageOptions, SearchOptions {
+interface LoadOptions : PageOptions, SearchOptions, SortOptions {
 
     companion object {
         @JvmOverloads
@@ -15,8 +15,9 @@ interface LoadOptions : PageOptions, SearchOptions {
         operator fun invoke(
             page: Int = PageOptions.DEFAULT_PAGE,
             limit: Int = PageOptions.DEFAULT_LIMIT,
-            key: String? = null
-        ): LoadOptions = LoadOptionsImpl(page, limit, key)
+            key: String? = null,
+            sorts: List<Sort> = sort {},
+        ): LoadOptions = LoadOptionsImpl(page, limit, key, sorts)
 
         fun fromQueryStringOrNull(query: String?): LoadOptions? {
             if (query == null) return null
