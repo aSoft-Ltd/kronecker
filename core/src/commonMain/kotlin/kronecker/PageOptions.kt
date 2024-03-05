@@ -22,7 +22,7 @@ interface PageOptions {
         @JvmStatic
         operator fun invoke(
             page: Int = DEFAULT_PAGE,
-            limit: Int = DEFAULT_LIMIT
-        ): PageOptions = LoadOptionsImpl(page, limit, null)
+            limit: Int = DEFAULT_LIMIT,
+        ): PageOptions = LoadOptionsImpl(page, limit, null, emptyList())
     }
 }
