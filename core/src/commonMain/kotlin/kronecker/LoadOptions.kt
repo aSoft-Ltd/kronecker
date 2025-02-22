@@ -2,6 +2,7 @@ package kronecker
 
 import kronecker.exeptions.MissingParameterException
 import kronecker.internal.LoadOptionsImpl
+import kroneker.filter.DataFilter
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -17,7 +18,8 @@ interface LoadOptions : PageOptions, SearchOptions, SortOptions {
             limit: Int = PageOptions.DEFAULT_LIMIT,
             key: String? = null,
             sorts: List<Sort> = sort {},
-        ): LoadOptions = LoadOptionsImpl(page, limit, key, sorts)
+            filter: DataFilter? = null
+        ): LoadOptions = LoadOptionsImpl(page, limit, key, sorts, filter)
 
         fun fromQueryStringOrNull(query: String?): LoadOptions? {
             if (query == null) return null
